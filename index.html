@@ -15,20 +15,30 @@
   <meta content="surge.sh" name="generator">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- <link rel="stylesheet" href="node_modules/jquery-ui/themes/base/all.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+  <!-- <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+  <link rel="stylesheet" href="node_modules/jquery-ui/themes/base/all.css"> -->
   <title>Covid-19 States Relief Measures</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="node_modules/tabletop/src/tabletop.min.js"></script>
+  <script type="text/javascript" src="node_modules/lodash/lodash.min.js"></script>
+  <script type="text/javascript" src="node_modules/g1/dist/g1.min.js"></script>
+  <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.js"></script> -->
 
   <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/jquery,npm/lodash,npm/g1"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <!-- jquery-ui.js source from https://code.jquery.com/ui/1.12.1/jquery-ui.js -->
-  <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lato|Ubuntu&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+  <!-- mobile menu navigation panel -->
   <ul class="sidenav" id="mobile-demo">
     <li><a target="_blank" href="https://docs.google.com/spreadsheets/d/1_JIaWdsm6fYPStN2fin0wt4ad2JSn8Sqt5bNeBZ4riM/edit?usp=sharing">Data</a></li>
     <li><a target="_blank" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fcovid19-india-response.surge.sh%2F&via=behanbox&text=Indian%20response%20to%20Covid-19%20spread&hashtags=covid19india%2C%20covid19">
@@ -36,6 +46,8 @@
     </a></li>
     <li><a href="https://www.behanbox.com/" target="_blank">By BehanBox</a></li>
   </ul>
+
+  <!-- navigation panel -->
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper teal">
@@ -54,6 +66,25 @@
   <p class="center flow-text">
     How is India responding to the COVID-19 pandemic? What steps are Union and State governments taking to protect their citizens. We track all the policy measures- economic, business, welfare- here.
   </p>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col s7 m7">
+      <!-- <a href="#" data-label="order" class="col s12 m4 border-order border-order-label">Government Order</a>
+      <a href="#" data-label="relief" class="col s12 m4 border-relief border-relief-label">Welfare Measures</a> -->
+    </div>
+    <div class="col s5 m5">
+      <div class="row">
+        <div class="col s10 m10">
+          <input type="text"
+            class="form-control left" name="autocomplete" id="autocomplete" aria-describedby="helpId" placeholder="search for welfare, pds, state">
+        </div>
+        <div class="col s2 m2" style="padding-top: 10px;">
+          <a class="waves-effect waves-light btn right">Reset</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="updates">Loading updates...</div>
   <script id="item-template" type="text/html">
     <div class="container">
@@ -84,35 +115,6 @@
       <% }) %>
     </div>
   </script>
-  <script type="text/javascript">
-    var misc_categories_uniq
-    var url = "https://docs.google.com/spreadsheets/d/1_JIaWdsm6fYPStN2fin0wt4ad2JSn8Sqt5bNeBZ4riM/edit?usp=sharing"
-    function init() {
-      Tabletop.init({
-        key: url,
-        callback: function(sheets_data, tabletop) {
-          // data in events sheet
-          g = _.groupBy(_.filter(sheets_data.events.elements, function(each_row) {
-                  return each_row['status'] != "0";
-                }),
-              "location")
-          g_sorted = _(g).toPairs().sortBy(0).fromPairs().value()
-          data = {data: g_sorted}
-          var tmpl = _.template($("#item-template").html())
-          $('#updates').html(tmpl(data))
-        },
-        simpleSheet: false
-      })
-      $('body').urlfilter({target: '#'})
-      var elems = document.querySelectorAll('.sidenav')
-      var instances = M.Sidenav.init(elems)
-    }
-    window.addEventListener('DOMContentLoaded', init)
-    if (typeof window.orientation !== 'undefined') {
-      $('.brand-logo').css('font-size', '4vw')
-    } else {
-      $('.brand-logo').css('font-size', '2.1rem')
-    }
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
