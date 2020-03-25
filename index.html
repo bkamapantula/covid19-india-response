@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <meta content="covid-19 india, states response" name="description">
+  <meta property="og:title"       content="Covid-19 India Response">
+  <meta property="og:url"         content="http://covid19-india-response.surge.sh/">
+  <meta propery="og:description"  content="India central, state government response to Covid-19 spread">
+  <meta property="og:type"        content="website">
+  <meta name="twitter:card"       content="India central, state government response to Covid-19 spread">
+  <meta name="twitter:site"       content="@behanbox">
+  <meta name="twitter:creator"    content="@behanbox">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="surge.sh" name="generator">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="node_modules/jquery-ui/themes/base/all.css">
+  <title>Covid-19 States Relief Measures</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="node_modules/tabletop/src/tabletop.min.js"></script>
+  <script type="text/javascript" src="node_modules/lodash/lodash.min.js"></script>
+  <script type="text/javascript" src="node_modules/g1/dist/g1.min.js"></script>
+  <!-- jquery-ui.js source from https://code.jquery.com/ui/1.12.1/jquery-ui.js -->
+  <script src="jquery-ui.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato|Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Covid-19 India Response</a>
+      </div>
+    </nav>
+  </div>
+  <div id="updates">Loading updates...</div>
+  <script id="item-template" type="text/html">
+    <div class="container">
+      <% _.each(data, function(vals, state) { %>
+        <div class="row">
+          <h4><%- state %></h4>
+          <% _.each(vals, function(item, item_id) { %>
+            <div class="col s12 m4 state-card" data-labelTarget=<%- item.type %>>
+              <div class="card border-<%- item.type %>"
+                data-place="<%- item.location %>"
+                data-category="<%- item.category %>"
+                data-misc="<%- item.misc %>"
+                data-labelTarget="<%- item.type %>">
+                <div class="card-content dark-text">
+                  <!-- <a href="?category=<%- item.misc %>" class="badge urlfilter right" target="#" data-category="<%- item.misc %>"><%- item.misc %></a> -->
+                  <span class="badge right" data-category="<%- item.misc %>"><%- item.misc %></span>
+                  <span class="card-title"><%- item.title %></span>
+                  <p><%- item.description %></p>
+                </div>
+                <div class="card-action">
+                  <a href="<%- item.source %>" target="_blank">Source</a>
+                  <div style="margin-bottom: 5px;" class="right"><%- item.when %></div>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% }) %>
+    </div>
+  </script>
+  <script type="text/javascript">
+    var misc_categories_uniq
+    var url = "https://docs.google.com/spreadsheets/d/1_JIaWdsm6fYPStN2fin0wt4ad2JSn8Sqt5bNeBZ4riM/edit?usp=sharing"
+    function init() {
+      Tabletop.init({
+        key: url,
+        callback: function(sheets_data, tabletop) {
+          // data in events sheet
+          g = _.groupBy(_.filter(sheets_data.events.elements, function(each_row) {
+                  return each_row['status'] != "0";
+                }),
+              "location")
+          g_sorted = _(g).toPairs().sortBy(0).fromPairs().value()
+          data = {data: g_sorted}
+          var tmpl = _.template($("#item-template").html())
+          $('#updates').html(tmpl(data))
+        },
+        simpleSheet: false
+      })
+      $('body').urlfilter({target: '#'})
+    }
+    window.addEventListener('DOMContentLoaded', init)
+  </script>
+</body>
+</html>
