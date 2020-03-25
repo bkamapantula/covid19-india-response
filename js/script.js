@@ -1,5 +1,9 @@
 var misc_categories_uniq
 var url = "https://docs.google.com/spreadsheets/d/1_JIaWdsm6fYPStN2fin0wt4ad2JSn8Sqt5bNeBZ4riM/edit?usp=sharing"
+
+/**
+  * fetch data from google spreadsheet, prepare for the page
+*/
 function init() {
   Tabletop.init({
     key: url,
@@ -8,6 +12,7 @@ function init() {
       filtered_elements = _.filter(sheets_data.events.elements, function(each_row) {
         return each_row['status'] != "0";
       })
+      $('.events-counter').html(filtered_elements.length + ' updates')
       g = _.groupBy(filtered_elements,
           "location")
       g_sorted = _(g).toPairs().sortBy(0).fromPairs().value()
@@ -28,6 +33,7 @@ function init() {
           $(".state-card, h4").hide()
           $('span[data-category*="'+ ui.item.value + '"]').closest('.state-card').show()
           $('span[data-category*="'+ ui.item.value + '"]').closest('.state-card').siblings("h4").show()
+          $('.events-counter').html($('span[data-category*="'+ ui.item.value + '"]').closest('.state-card').length + ' updates')
         }
       }).bind('focus', function () {
         // binds focus with autocomplete
@@ -41,6 +47,8 @@ function init() {
   var instances = M.Sidenav.init(elems)
 }
 window.addEventListener('DOMContentLoaded', init)
+
+// brand font on mobile overflows, this is a hack to identify that and reset the font-size
 if (typeof window.orientation !== 'undefined') {
   $('.brand-logo').css('font-size', '4vw')
 } else {
@@ -51,4 +59,15 @@ $('body').on('click', 'a.btn', function() {
   $(".state-card, h4").show()
   $('.state-card').siblings("h4").show()
   $("#autocomplete").val('')
+  $("[data-label]").removeClass('border-relief')
+  $('.events-counter').html($('.state-card').length + ' updates')
+}).on('click', '[data-label]', function() {
+  var label = $(this).data("label")
+  $("[data-label]").removeClass('border-relief')
+  $("#autocomplete").val('')
+  $(this).addClass('border-relief')
+  $(".state-card, h4").hide()
+  $('.events-counter').html($(".state-card[data-labeltarget='" + label + "']").length + ' updates')
+  $(".state-card[data-labeltarget='" + label + "']").show()
+  $(".state-card[data-labeltarget='" + label + "']").siblings("h4").show()
 })

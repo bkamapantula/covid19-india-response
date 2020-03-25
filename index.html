@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
   <!-- <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
   <link rel="stylesheet" href="node_modules/jquery-ui/themes/base/all.css"> -->
-  <title>Covid-19 States Relief Measures</title>
+  <title>Covid-19 Indian States Relief Measures</title>
   <link rel="stylesheet" href="style.css">
 
   <!-- <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -31,9 +31,9 @@
   <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/jquery,npm/lodash,npm/g1"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <!-- jquery-ui.js source from https://code.jquery.com/ui/1.12.1/jquery-ui.js -->
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lato|Ubuntu&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -68,11 +68,14 @@
   </p>
   <div class="divider"></div>
   <div class="row">
-    <div class="col s7 m7">
-      <!-- <a href="#" data-label="order" class="col s12 m4 border-order border-order-label">Government Order</a>
-      <a href="#" data-label="relief" class="col s12 m4 border-relief border-relief-label">Welfare Measures</a> -->
+    <div class="col s12 m7">
+      <ul class="filters">
+        <li>View by</li>
+        <li><a href="#" data-label="Government Order">Government Orders</a></li>
+        <li><a href="#" data-label="Welfare Measures">Welfare Measures</a></li>
+      </ul>
     </div>
-    <div class="col s5 m5">
+    <div class="col s12 m5">
       <div class="row">
         <div class="col s10 m10">
           <input type="text"
@@ -84,6 +87,7 @@
       </div>
     </div>
   </div>
+  <p class="center">Viewing <span class="events-counter"></span></p>
 
   <div id="updates">Loading updates...</div>
   <script id="item-template" type="text/html">
@@ -92,12 +96,12 @@
         <div class="row">
           <h4><%- state %></h4>
           <% _.each(vals, function(item, item_id) { %>
-            <div class="col s12 m4 state-card" data-labelTarget=<%- item.type %>>
+            <div class="col s12 m4 state-card" data-labeltarget="<%- item.type %>">
               <div class="card border-<%- item.type %>"
                 data-place="<%- item.location %>"
                 data-category="<%- item.category %>"
                 data-misc="<%- item.misc %>"
-                data-labelTarget="<%- item.type %>">
+                data-labeltarget="<%- item.type %>">
                 <div class="card-content dark-text">
                   <!-- <a href="?category=<%- item.misc %>" class="badge urlfilter right" target="#" data-category="<%- item.misc %>"><%- item.misc %></a> -->
                   <span class="badge right" data-category="<%- item.misc %>"><%- item.misc %></span>

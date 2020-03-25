@@ -7,11 +7,11 @@ Data is curated by [Bhanupriya Rao](https://twitter.com/bhanupriya_rao) and [Bha
 
 ## Features
 
-- [ ] search categories
+- [ ] category links
+- [x] search categories
 - [ ] footer
 - [x] link to behanbox
-- [ ] social sharing options
-  - [x] Twitter
+- [x] Twitter sharing option
 
 ## Contribute
 
