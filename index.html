@@ -33,7 +33,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-  <!-- jquery-ui.js source from https://code.jquery.com/ui/1.12.1/jquery-ui.js -->
   <link href="https://fonts.googleapis.com/css?family=Lato|Ubuntu&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -71,8 +70,8 @@
     <div class="col s12 m7">
       <ul class="filters">
         <li>View by</li>
-        <li><a href="#" data-label="Government Order">Government Orders</a></li>
-        <li><a href="#" data-label="Welfare Measures">Welfare Measures</a></li>
+        <li><a href="?view=Government Order" class="urlfilter" data-label="Government Order">Government Orders</a></li>
+        <li><a href="?view=Welfare Measures" class="urlfilter" data-label="Welfare Measures">Welfare Measures</a></li>
       </ul>
     </div>
     <div class="col s12 m5">
@@ -96,7 +95,7 @@
         <div class="row">
           <h4><%- state %></h4>
           <% _.each(vals, function(item, item_id) { %>
-            <div class="col s12 m4 state-card" data-labeltarget="<%- item.type %>">
+            <div class="col s12 m4 state-card" data-labeltarget="<%- item.type %>" data-category="<%- item.misc %>">
               <div class="card border-<%- item.type %>"
                 data-place="<%- item.location %>"
                 data-category="<%- item.category %>"

@@ -1,7 +1,6 @@
 body {
   font-family: 'Ubuntu', sans-serif;
 }
-
 .updates {
   list-style: none;
   padding: 0;
@@ -9,35 +8,16 @@ body {
   display: grid;
   grid-template-columns:  1fr 1fr 1fr;
 }
-
 .updates li {
   margin: 1em;
 }
-
 .updates li img {
   width: 100%;
 }
-.border-order {
-  border-top: 1px solid #283593;
-}
-.border-request {
-  border-top: 1px solid #cddc39;
-}
-.border-relief {
-  /* #1b5320 */
+.border-selected {
   border-top: 1px solid #e91e63;
 }
-.border-notification {
-  border-top: 1px solid #ffff8d;
-}
-.border-report {
-  border-top: 1px solid #ff5722;
-}
-.border-order-label,
-.border-request-label,
-.border-relief-label,
-.border-report-label,
-.border-notification-label {
+.border-selected-label {
   padding: 2px;
 }
 .card .card-title {
