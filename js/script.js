@@ -51,9 +51,9 @@ function init() {
         select: function(evt, ui) {
           // search by category
           toggle_state_cards(ui.item.value, 'cat')
-          g1_url.update({cat: ui.item.value}, 'add')
-          g1_url.update({view: null}, 'del')
+          g1_url.update({cat: ui.item.value, view: null}, 'cat=toggle&view=del')
           history.pushState({}, '', g1_url.toString())
+          $("[data-label]").removeClass('border-selected')
         }
       }).bind('focus', function () {
         // binds focus with autocomplete
@@ -94,8 +94,7 @@ $('body').on('click', 'a.btn', function() {
   $(this).addClass('border-selected')
   toggle_state_cards(label, 'view')
 
-  g1_url.update({view: label}, 'toggle')
-  g1_url.update({cat: null}, 'del')
+  g1_url.update({view: label, cat: null}, 'view=toggle&cat=del')
   history.pushState({}, '', g1_url.toString())
 })
 
