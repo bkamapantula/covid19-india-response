@@ -96,7 +96,7 @@
       </div>
     </div>
   </div>
-  <p class="center">Viewing <span class="events-counter"></span></p>
+  <p class="center">Viewing <span class="events-counter"></span>. Arranged by <a href="?arrange=state" class="urlfilter" data-arrange="state">State</a> | <a href="?arrange=date" class="urlfilter" data-arrange="date">Date</a> </p>
 
   <div id="updates">Loading updates...</div>
   <script id="item-template" type="text/html">
@@ -119,7 +119,7 @@
                 </div>
                 <div class="card-action">
                   <a href="<%- item.source %>" target="_blank">Source</a>
-                  <div style="margin-bottom: 5px;" class="right"><%- item.when %></div>
+                  <div style="margin-bottom: 5px;" class="right"><%- _by === 'date' ? item.location : item.when %></div>
                 </div>
               </div>
             </div>
