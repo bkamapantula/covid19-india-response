@@ -22,7 +22,7 @@ var s1 = ["After the first lockdown on 25th March, Indian economy came to a stan
 var s2 = ["Lakhs of people started going back to their home towns/villages/cities"]
 var s3 = ["Hundreds lost their lives from exhaustion while traveling, starvation, denial of medical care, suicide from financial distress..."]
 var s4 = ["These lives are not collateral damage"]
-var s5 = ["Remember them as we aim to build a better future"]
+var s5 = ["Never Forget"]
 new Typed('.s1', {
   strings: s1,
   typeSpeed: 30,
