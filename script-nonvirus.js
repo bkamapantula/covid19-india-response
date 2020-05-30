@@ -18,11 +18,13 @@ var names_g = []
   So a simple declaration becomes nested pool of declarations.
 */
 
-var s1 = ["After the first lockdown on 25th March, Indian economy came to a standstill"]
-var s2 = ["Lakhs of people started going back to their home towns/villages/cities"]
-var s3 = ["Hundreds lost their lives from exhaustion while traveling, starvation, denial of medical care, suicide from financial distress..."]
-var s4 = ["These lives are not collateral damage"]
-var s5 = ["Never Forget"]
+var s1 = ["On 25th March India announced a complete lockdown to contain Covid-19"]
+var s2 = ["Everything came to a standstill"]
+var s3 = ["Lakhs of anxious people started walking back to their homes in towns/villages/cities"]
+var s4 = ["Hundreds lost their lives from exhaustion while traveling, starvation, denial of medical care, suicide from financial distress..."]
+var s5 = ["These lives are not collateral damage"]
+var s6 = ["Who is accountable?"]
+var s7 = ["Never Forget"]
 new Typed('.s1', {
   strings: s1,
   typeSpeed: 30,
@@ -53,9 +55,25 @@ new Typed('.s1', {
                   showCursor: false,
                   contentType: 'html',
                   onComplete: function() {
-                    $('.names-container').removeClass('d-none')
-                    $('footer').removeClass('d-none')
-                  }
+                    new Typed('.s6', {
+                      strings: s6,
+                      typeSpeed: 30,
+                      showCursor: false,
+                      contentType: 'html',
+                      onComplete: function() {
+                        new Typed('.s7', {
+                          strings: s7,
+                          typeSpeed: 30,
+                          showCursor: false,
+                          contentType: 'html',
+                          onComplete: function() {
+                            $('.names-container').removeClass('d-none')
+                            $('footer').removeClass('d-none')
+                          } // s7 onComplete
+                        }) // typed s7
+                      } // s6 onComplete
+                    }) // typed s6
+                  } // s5 onComplete
                 })
               } // s4 oncomplete
             }) // typed s4
