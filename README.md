@@ -5,6 +5,16 @@ Data is curated by [Bhanupriya Rao](https://twitter.com/bhanupriya_rao) and [Bha
 
 [Spreadsheet link](https://docs.google.com/spreadsheets/d/1_JIaWdsm6fYPStN2fin0wt4ad2JSn8Sqt5bNeBZ4riM/edit?usp=sharing)
 
+## Content
+
+- Navigation
+  - Links
+    - By BehanBox
+    - Tweet
+    - Data
+  - Title
+- Body
+
 ## Features
 
 - [x] category links

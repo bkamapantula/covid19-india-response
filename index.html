@@ -47,58 +47,67 @@
   </script>
 </head>
 <body>
+  <div id="content">Loading static content...</div>
   <!-- mobile menu navigation panel -->
-  <ul class="sidenav" id="mobile-demo">
-    <li><a target="_blank" href="https://docs.google.com/spreadsheets/d/1_JIaWdsm6fYPStN2fin0wt4ad2JSn8Sqt5bNeBZ4riM/edit?usp=sharing">Data</a></li>
-    <li><a target="_blank" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fcovid19-india-response.surge.sh%2F&via=behanbox&text=Indian%20response%20to%20Covid-19%20spread&hashtags=covid19india%2C%20covid19">
-      Tweet
-    </a></li>
-    <li><a href="https://www.behanbox.com/" target="_blank">By BehanBox</a></li>
-  </ul>
+  <script id="static-content" type="text/html">
+    <ul class="sidenav" id="mobile-demo">
+      <% _.each(config.toppanel.links, function(item) { %>
+        <li><a target="_blank" href="<- item.url >"><%- item.text %></a></li>
+      <% }) %>
+    </ul>
 
-  <!-- navigation panel -->
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper teal">
-        <a href="#" class="brand-logo center">Covid-19 India Response</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="hide-on-med-and-down">
-          <li><a href="https://www.behanbox.com/" target="_blank">By BehanBox</a></li>
-          <li><a target="_blank" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fcovid19-india-response.surge.sh%2F&via=behanbox&text=Indian%20response%20to%20Covid-19%20spread&hashtags=covid19india%2C%20covid19">
-            Tweet
-          </a></li>
-          <li><a target="_blank" href="https://docs.google.com/spreadsheets/d/1_JIaWdsm6fYPStN2fin0wt4ad2JSn8Sqt5bNeBZ4riM/edit?usp=sharing">Data</a></li>
+    <!-- navigation panel -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper teal">
+          <a href="#" class="brand-logo center"><%- config.toppanel.title %></a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="hide-on-med-and-down">
+            <% _.each(config.toppanel.links, function(item) { %>
+              <li><a target="_blank" href="<- item.url >"><%- item.text %></a></li>
+            <% }) %>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <p class="center flow-text">
+      <%- config.cover %>
+    </p>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col s12 m1">
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn' href='#' data-target='lang-selector'><i class="material-icons">language</i></a>
+        <!-- Dropdown Structure -->
+        <ul id='lang-selector' class='dropdown-content'>
+          <li class="active"><a href="?lang=en" data-lang="en" class="lang urlfilter">English</a></li>
+          <li><a href="?lang=te" data-lang="te" class="lang urlfilter">తెలుగు</a></li>
         </ul>
       </div>
-    </nav>
-  </div>
-  <p class="center flow-text">
-    How is India responding to the COVID-19 pandemic? What steps are Union and State governments taking to protect their citizens. We track all the policy measures- economic, business, welfare- here.
-  </p>
-  <div class="divider"></div>
-  <div class="row">
-    <div class="col s12 m7">
-      <ul class="filters">
-        <li>View by</li>
-        <li><a href="?view=Government Order" class="urlfilter" data-label="Government Order">Government Orders</a></li>
-        <li><a href="?view=Welfare Measures" class="urlfilter" data-label="Welfare Measures">Welfare Measures</a></li>
-        <li><a href="?view=Surveillance" class="urlfilter" data-label="Surveillance">Data/Technology/Surveillance</a></li>
-        <li><a href="?view=Lockdown Deaths" class="urlfilter" data-label="Lockdown Deaths">Lockdown Deaths</a></li>
-      </ul>
-    </div>
-    <div class="col s12 m5">
-      <div class="row">
-        <div class="col s10 m10">
-          <input type="text"
-            class="form-control left" name="autocomplete" id="autocomplete" aria-describedby="helpId" placeholder="search for welfare, pds, food">
-        </div>
-        <div class="col s2 m2" style="padding-top: 10px;">
-          <a class="waves-effect waves-light btn right">Reset</a>
+      <div class="col s12 m8 center">
+        <ul class="filters">
+          <li>View by</li>
+          <% _.each(config.filters, function(item) { %>
+            <li><a href="?view=<%- item.text %>" class="urlfilter" data-label="<%- item.text %>"><%- item.text %>s</a></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="col s12 m3">
+        <div class="row">
+          <div class="col s10 m10">
+            <input type="text"
+              class="form-control left" name="autocomplete" id="autocomplete" aria-describedby="helpId" placeholder="search for welfare, pds, food">
+          </div>
+          <div class="col s2 m2" style="padding-top: 10px;">
+            <a class="waves-effect waves-light btn right">
+              <i class="material-icons">refresh</i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <p class="center">Viewing <span class="events-counter"></span>. Arranged by <a href="?arrange=state" class="urlfilter" data-arrange="state">State</a> | <a href="?arrange=date" class="urlfilter" data-arrange="date">Date</a> </p>
+    <p class="center">Viewing <span class="events-counter"></span>. Arranged by <a href="?arrange=state" class="urlfilter" data-arrange="state">State</a> | <a href="?arrange=date" class="urlfilter" data-arrange="date">Date</a> </p>
+  </script>
 
   <div id="updates">Loading updates...</div>
   <script id="item-template" type="text/html">
@@ -131,5 +140,24 @@
     </div>
   </script>
   <script src="js/script.js"></script>
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+            All content is curated by BehanBox, Twitter users online. Content (titles, descriptions) are adapted/replicated from respective Sources (Newspapers, Digital Media, Tweets). Content is categorized for easy discovery purposes.
+          </p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.behanbox.com/">BehanBox.com</a></li>
+            <li><a class="grey-text text-lighten-3" target="_blank" href="https://twitter.com/behanbox">@BehanBox</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

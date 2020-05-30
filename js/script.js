@@ -63,6 +63,13 @@ function render_page(arrange_by) {
   })
 }
 
+function render_static_content() {
+  var tmpl = _.template($("#static-content").html())
+  // config = {config: config}
+  console.log(config)
+  $("#content").html(tmpl({config: config.en}))
+}
+
 /**
   * fetch data from google spreadsheet
 */
@@ -71,10 +78,15 @@ function init(arrange_by) {
     key: url,
     callback: function(sheets_data, tabletop) {
       // data in events sheet
+      translations = sheets_data.translations.elements
       sheets_global = _.filter(sheets_data.events.elements, function(each_row) {
         return each_row['status'] != "0";
       })
+      render_static_content()
       render_page()
+      $('.dropdown-trigger').dropdown()
+      g1_url.update({lang: 'en'}, 'toggle')
+      history.pushState('', {}, g1_url.toString())
     },
     simpleSheet: false
   })
@@ -114,6 +126,9 @@ $('body').on('click', 'a.btn', function() {
 }).on('click', '[data-arrange]', function() {
   _by = $(this).data('arrange')
   render_page(_by)
+}).on('click', '.lang', function() {
+  lang = $(this).data("lang")
+  g1_url.update({lang: lang}, 'toggle')
 })
 
 // if url has attributes (persistent share) render accordingly
