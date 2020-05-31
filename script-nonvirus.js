@@ -20,6 +20,7 @@ $(".s1").fadeOut(0).html(s1).fadeIn(1500, function(){
             $(".s7").fadeOut(0).html(s7).fadeIn(1500, function(){
               $('.names-container').removeClass('d-none')
               $('footer').removeClass('d-none')
+              $('#updates').removeClass('d-none')
             });
           });
         });
@@ -158,15 +159,24 @@ function init() {
       )
 
       // render template
-      $('.names').template({
-        names: names_final
-      })
+      // $('.names').template({
+      //   names: names_final
+      // })
+      var tmpl = _.template($(".names").html())
+      $('#updates').html(tmpl({names: names_final}))
     },
     simpleSheet: false
   })
 }
 window.addEventListener('DOMContentLoaded', init)
 
+$('body').on('click', 'button', function(e) {
+  e.preventDefault()
+  $('.s1, .s2, .s3, .s4, .s5, .s6, .s7').stop(true, true)
+  $('.names-container').removeClass('d-none')
+  $('footer').removeClass('d-none')
+  $('#updates').removeClass('d-none')
+})
 /*
 Kalu Ram (55); X(70); Naresh Kartik (55)
 Ayesha(63); Madhava (50)

@@ -36,6 +36,9 @@
       <a class="nav-item nav-link" href="where.html">Where They Died</a>
     </div>
     <ul class="ml-auto navbar-nav">
+      <li class="form-inline">
+        <button class="nav-link btn btn-xs btn-light">Show Names</button>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href=".">Non-Virus Deaths in India</a>
       </li>
@@ -53,6 +56,7 @@
     </div>
     <div class="names-container d-none">
       <div class="divider"></div>
+      <div id="updates" class="d-none">Loading names...</div>
       <script type="text/html" class="names">
         <div class="row py-2">
           <% _.each(names, function(name, ind) { %>
