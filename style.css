@@ -1,6 +1,7 @@
 body {
   font-family: 'Ubuntu', sans-serif;
 }
+
 .updates {
   list-style: none;
   padding: 0;
@@ -8,6 +9,16 @@ body {
   display: grid;
   grid-template-columns:  1fr 1fr 1fr;
 }
+
+.row .col-sm-12 {
+      white-space: break-spaces;
+      font-size: 16px;
+}
+
+.s7{
+  font-weight: bolder;
+}
+
 .updates li {
   margin: 1em;
 }

@@ -25,45 +25,68 @@ var s4 = ["Hundreds lost their lives from exhaustion while traveling, starvation
 var s5 = ["These lives are not collateral damage"]
 var s6 = ["Who is accountable?"]
 var s7 = ["Never Forget"]
+
+
+
+
+
+$(".s1").fadeOut(0).html(s1).fadeIn(1500, function(){
+  $(".s2").fadeOut(0).html(s2).fadeIn(1500, function(){
+    $(".s3").fadeOut(0).html(s3).fadeIn(1500, function(){
+      $(".s4").fadeOut(0).html(s4).fadeIn(1500, function(){
+        $(".s5").fadeOut(0).html(s5).fadeIn(1500, function(){
+          $(".s6").fadeOut(0).html(s6).fadeIn(1500, function(){
+            $(".s7").fadeOut(0).html(s7).fadeIn(1500, function(){
+              $('.names-container').removeClass('d-none')
+              $('footer').removeClass('d-none')
+            });      
+          });      
+        });      
+      });      
+    });  
+  });
+});
+
+/*
 new Typed('.s1', {
   strings: s1,
-  typeSpeed: 30,
+  typeSpeed: 80,
   showCursor: false,
   contentType: 'html',
   onComplete: function() {
     new Typed('.s2', {
       strings: s2,
-      typeSpeed: 30,
+      typeSpeed: 80,
       showCursor: false,
       contentType: 'html',
       onComplete: function() {
         new Typed('.s3', {
           strings: s3,
-          typeSpeed: 30,
+          typeSpeed: 80,
           showCursor: false,
           contentType: 'html',
           onComplete: function() {
             new Typed('.s4', {
               strings: s4,
-              typeSpeed: 30,
+              typeSpeed: 80,
               showCursor: false,
               contentType: 'html',
               onComplete: function() {
                 new Typed('.s5', {
                   strings: s5,
-                  typeSpeed: 30,
+                  typeSpeed: 80,
                   showCursor: false,
                   contentType: 'html',
                   onComplete: function() {
                     new Typed('.s6', {
                       strings: s6,
-                      typeSpeed: 30,
+                      typeSpeed: 80,
                       showCursor: false,
                       contentType: 'html',
                       onComplete: function() {
                         new Typed('.s7', {
                           strings: s7,
-                          typeSpeed: 30,
+                          typeSpeed: 80,
                           showCursor: false,
                           contentType: 'html',
                           onComplete: function() {
@@ -83,6 +106,8 @@ new Typed('.s1', {
     }) // typed s2
   } // s1 on complete
 })
+
+*/
 
 /**
   * fetch data from google spreadsheet
