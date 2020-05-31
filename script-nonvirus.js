@@ -3,21 +3,6 @@ var g1_url = g1.url.parse(location.href)
 var sheets_global, names
 var names_g = []
 
-// var sentences = [
-//   "<p class='my-0'>After the first lockdown on 25th May, Indian economy came to a standstill</p><p class='my-0'> `Lakhs of people started going back to their home towns/villages/cities` </p><p class='my-0'> `Many lost their lives from exhaustion while traveling... starvation... denial of medical care... suicide from financial distress...` </p><p class='my-0'> `These lives are not collateral damage` </p><p class='my-0'> `Remember them as we aim to build a better future`</p>"
-// ]
-// new Typed('.intro', {
-//   strings: sentences,
-//   typeSpeed: 30,
-//   showCursor: false,
-//   contentType: 'html'
-// })
-
-/*
-  typed.js doesn't `type` sentences after the first one.
-  So a simple declaration becomes nested pool of declarations.
-*/
-
 var s1 = ["On 25th March India announced a complete lockdown to contain Covid-19"]
 var s2 = ["Everything came to a standstill"]
 var s3 = ["Lakhs of anxious people started walking back to their homes in towns/villages/cities"]
@@ -25,10 +10,6 @@ var s4 = ["Hundreds lost their lives from exhaustion while traveling, starvation
 var s5 = ["These lives are not collateral damage"]
 var s6 = ["Who is accountable?"]
 var s7 = ["Never Forget"]
-
-
-
-
 
 $(".s1").fadeOut(0).html(s1).fadeIn(1500, function(){
   $(".s2").fadeOut(0).html(s2).fadeIn(1500, function(){
@@ -39,75 +20,13 @@ $(".s1").fadeOut(0).html(s1).fadeIn(1500, function(){
             $(".s7").fadeOut(0).html(s7).fadeIn(1500, function(){
               $('.names-container').removeClass('d-none')
               $('footer').removeClass('d-none')
-            });      
-          });      
-        });      
-      });      
-    });  
+            });
+          });
+        });
+      });
+    });
   });
 });
-
-/*
-new Typed('.s1', {
-  strings: s1,
-  typeSpeed: 80,
-  showCursor: false,
-  contentType: 'html',
-  onComplete: function() {
-    new Typed('.s2', {
-      strings: s2,
-      typeSpeed: 80,
-      showCursor: false,
-      contentType: 'html',
-      onComplete: function() {
-        new Typed('.s3', {
-          strings: s3,
-          typeSpeed: 80,
-          showCursor: false,
-          contentType: 'html',
-          onComplete: function() {
-            new Typed('.s4', {
-              strings: s4,
-              typeSpeed: 80,
-              showCursor: false,
-              contentType: 'html',
-              onComplete: function() {
-                new Typed('.s5', {
-                  strings: s5,
-                  typeSpeed: 80,
-                  showCursor: false,
-                  contentType: 'html',
-                  onComplete: function() {
-                    new Typed('.s6', {
-                      strings: s6,
-                      typeSpeed: 80,
-                      showCursor: false,
-                      contentType: 'html',
-                      onComplete: function() {
-                        new Typed('.s7', {
-                          strings: s7,
-                          typeSpeed: 80,
-                          showCursor: false,
-                          contentType: 'html',
-                          onComplete: function() {
-                            $('.names-container').removeClass('d-none')
-                            $('footer').removeClass('d-none')
-                          } // s7 onComplete
-                        }) // typed s7
-                      } // s6 onComplete
-                    }) // typed s6
-                  } // s5 onComplete
-                })
-              } // s4 oncomplete
-            }) // typed s4
-          } // s3 oncomplete
-        }) // typed s3
-      } // s2 oncomplete
-    }) // typed s2
-  } // s1 on complete
-})
-
-*/
 
 /**
   * fetch data from google spreadsheet
