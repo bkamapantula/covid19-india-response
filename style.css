@@ -5,8 +5,11 @@ body {
   white-space: pre;
   height: 380px;
 }
-.row .col-sm-12, .where p {
+.row .col-sm-12 {
   white-space: break-spaces;
+  font-size: 16px;
+}
+.where p {
   font-size: 16px;
 }
 .s7 {
