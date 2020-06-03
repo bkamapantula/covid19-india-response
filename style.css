@@ -5,7 +5,7 @@ body {
   white-space: pre;
   height: 380px;
 }
-.row .col-sm-12 {
+.home.row .col-sm-12 {
   white-space: break-spaces;
   font-size: 16px;
 }
@@ -14,4 +14,16 @@ body {
 }
 .s7 {
   font-weight: bolder;
+}
+#tooltip {
+  background: cornsilk;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+ul span.covered {
+  background-color: tomato;
+}
+ul span.total {
+  background-color: lightgray;
 }

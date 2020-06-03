@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <title>Non-virus deaths - Distance traveled</title>
+  <link rel="stylesheet" href="https://gramener.com/ui/bootstraptheme.css">
+  <!-- <link rel="stylesheet" href="http://localhost:9988/ui/bootstraptheme.css"> -->
+  <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/bootstrap@4.5.0/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/lodash,npm/g1"></script>
+  <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="node_modules/lodash/lodash.min.js"></script>
+  <script src="node_modules/g1/dist/g1.min.js"></script> -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161967676-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-161967676-1');
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="nav navbar-nav">
+      <a class="nav-item nav-link" href=".">Who They Are<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="where.html">Where They Died</a>
+      <a class="nav-item nav-link active" href="distance.html">Distance they covered</a>
+    </div>
+    <ul class="ml-auto navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href=".">Non-Virus Deaths in India</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+    <p class="text-muted" style="font-size: 16px;">
+      People walked long distances in the hope to reach their homes. In several cases, over many days. We look at <code>27 exhaustion related instances</code> where a person (or a group) traveled to their home cities/towns/villages.
+    </p>
+    <h3 class="text-muted">About Paths</h3>
+    <ul class="text-muted">
+      <li>Each path represents the total distance a person (or a group of people) attempted to cover by a combination of transportation means.</li>
+      <li><span class="px-3 covered"></span> represents distance covered before they passed away. <span class="px-3 total"></span> represents total distance.</li>
+      <li>Distances are approximated to nearest number.</li>
+    </ul>
+    <div class="divider"></div>
+    <script class="people-template" type="text/html">
+      <% _.each(people, function(person, ind) { %>
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-left">
+            <h6><%= person.name %><%= person.age ? ' (' + person.age + ')' : '' %></h6>
+            <p class="text-muted">.. <%= person.difference > 0 ? (person.name.indexOf('Lalluram') > -1 || person.name.indexOf('Zubair') > -1 ? 'were ' : 'was ') + person.difference + ' km away from their destination' : 'reached their destination' %>. <a class="sm1" href="<%= person.source %>" rel="noopener" target="_blank">Source</a>.</p>
+          </div>
+          <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 text-right person-<%= ind %>"></div>
+        </div>
+      <% }) %>
+    </script>
+  </div> <!-- .container -->
+  <div id="tooltip" display="none" style="position: absolute; display: none;"></div>
+  <footer class="page-footer">
+    <div class="divider"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">
+            Non-virus deaths data is curated voluntarily by <a href="https://twitter.com/CB_Aman" target="_blank" rel="noopener">Aman</a> (Assistant Professor of Legal Practice at Jindal Global School of Law), <a href="https://twitter.com/_kanikas_" target="_blank" rel="noopener">Kanika Sharma</a> (PhD student at Emory University), <a href="https://twitter.com/anhsurk" target="_blank" rel="noopener">Krushna</a> (PhD student at Syracuse University) and <a href="https://twitter.com/thej" target="_blank" rel="noopener">Thejesh GN</a> (Public Interest Technologist). With support from <a href="https://twitter.com/roadscholarz" target="_blank" rel="noopener">Roadscholarz</a>.
+          </p>
+          <p>
+            Created by <a href="https://twitter.com/thoughtisdead">Bhanu K</a>. Inform him if you notice any errors.
+          </p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li>Data source: <a href="https://github.com/datameet/covid19/" target="_blank" rel="noopener">Datameet GitHub</a></li>
+            <li><a href="https://thejeshgn.com/projects/covid19-india/non-virus-deaths/" target="_blank" rel="noopener">Introduction</a> to the dataset by Thej.</li>
+            <li>Visit <a href="https://www.behanbox.com/" target="_blank" rel="noopener">BehanBox</a>.</li>
+            <li>Source code: <a href="https://github.com/bkamapantula/covid19-india-response/" target="_blank" rel="noopener">covid-19-india-response</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
+  <!-- <script src="node_modules/@svgdotjs/svg.js/dist/svg.min.js"></script> -->
+  <script>
+    function showTooltip(evt, text) {
+      let tooltip = document.getElementById("tooltip")
+      tooltip.innerHTML = text
+      tooltip.style.display = "block"
+      tooltip.style.left = evt.pageX + 10 + 'px'
+      tooltip.style.top = evt.pageY + 10 + 'px'
+    }
+
+    function hideTooltip() {
+      var tooltip = document.getElementById("tooltip")
+      tooltip.style.display = "none"
+    }
+
+    function draw(el, data) {
+      var svg_width = typeof window.orientation !== 'undefined' ? 275 : 500
+      var svg = SVG().size(svg_width, 100)
+      var draw_path = svg.addTo('div' + el)
+      var x1_start = 10,
+        x1_end = (data.covered/data.total)*svg_width,
+        x2_start = (data.covered/data.total)*svg_width+1,
+        x2_end = svg_width
+      var path_covered = draw_path.path(`M ${x1_start} 50 l ${x1_end} 0`)
+      path_covered.stroke({color: 'tomato', width: 10, fill: "none"})
+      path_covered.addClass('covered')
+      var path_total = draw_path.path(`M ${x2_start} 50 l ${x2_end} 0`)
+      path_total.stroke({color: 'lightgray', width: 10})
+
+      // text labels - x1_start (from), x1_end, x2_end (to)
+      var text = svg.text(typeof window.orientation !== 'undefined' ? data.from : data.from_address)
+      text.attr('x', '10').attr('y', '20').attr('dx', "-10")
+        .attr('text-anchor', "start")
+        .attr('stroke', "none")
+        .on('mouseover', function(evt) {
+          return showTooltip(evt, data.from_address)
+        })
+        .on('mouseout', hideTooltip)
+
+      var text = svg.text(typeof window.orientation !== 'undefined' ? data.to : data.to_address)
+      text.attr('x', x2_end).attr('y', '20').attr('dx', "-20")
+        .attr('text-anchor', "end")
+        .attr('stroke', "none")
+        .on('mouseover',  function(evt) {
+          return showTooltip(evt, data.to_address)
+        })
+        .on('mouseout', hideTooltip)
+
+      var txt = svg.text(data.covered + " km")
+      text_pos = _.indexOf(["Ram Kripal", "Atar Singh", "Hari Prasad", "Jamalo Madkam", "Gangaram"], data.name) > -1 ? 'end' : 'middle'
+      txt.attr('x', x1_end)
+        .attr('y', 50)
+        .attr('text-anchor', text_pos)
+        .on('mouseover', function(evt) {
+          return showTooltip(evt, data.stopped_at)
+        })
+        .on('mouseout', hideTooltip)
+      if(data.difference > 0)
+        svg.text(data.total + " km")
+          .attr('x', x2_end)
+          .attr('y', 50)
+          .attr('text-anchor', "end")
+    }
+
+    fetch('distance.json')
+      .then(function(people) {
+        if(people.status !== 200)
+          console.log("Error fetching people records.")
+        people.json().then(function(data){
+          $('.people-template').template({people: data})
+          _.each(data, function(person, ind) {
+            var el = '.person-' + ind
+            draw(el, person)
+          })
+        }) // people.json
+      }) // fetch
+  </script>
+</body>
+</html>
